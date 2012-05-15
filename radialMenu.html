@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta
+     name="viewport"
+     content="width=100%; 
+             initial-scale=1;
+             maximum-scale=1;
+             minimum-scale=1; 
+             user-scalable=no;"
+    />
+    
+<title>Radial Menu Example</title>
+<style type="text/css">
+	* {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	html, body {
+		text-align:center;
+		margin:0;
+		padding:0;
+		overflow:hidden;
+	}
+	a {
+		background:rgba(0, 0, 0, 0.85);
+		color:#fff;
+		text-align:center;
+		cursor:pointer;
+		border-radius:50px;
+	}
+	.active a {background:#999;}
+	.radial_launcher {
+		display:block;
+		height:80px;
+		width:80px;
+		line-height:80px;
+	}
+	ul {list-style-type:none;}
+
+	.radial_menu {
+		position:relative;
+		display:inline-block;
+		margin:200px;
+	}
+	.radial_options {
+		height:0;
+		width:0;
+		font-size:0;
+		line-height:0;
+		display:none;
+	}
+	.radial_option {
+		display:block;
+		position:absolute;
+		top:0;
+		left:0;
+		height:60px;
+		width:60px;
+		font-size:12px;
+		line-height:60px;
+		text-align:center;
+		overflow:visible;
+	}
+	
+	.radial_option a:hover {
+		background:#666;
+	}
+	
+	.radial_option a {
+		display:block;
+		height:60px;
+		width:60px;
+		position:absolute;
+	}
+	
+
+</style>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+
+</head>
+
+<body>
+<div class="radial_menu">
+	<a class="radial_launcher">Options</a>
+  <ul class="radial_options">
+  	<li class="radial_option"><a>Option A</a></li>
+  	<li class="radial_option"><a>Option B</a></li>
+  	<li class="radial_option"><a>Option C</a></li>
+    <li class="radial_option"><a>Option D</a></li>
+    <li class="radial_option"><a>Option E</a></li>
+<!--
+    <li class="radial_option"><a>Option F</a></li>
+    <li class="radial_option"><a>Option G</a></li>
+    <li class="radial_option"><a>Option H</a></li>
+    <li class="radial_option"><a>Option I</a></li>
+    <li class="radial_option"><a>Option J</a></li>
+-->
+  </ul>
+</div>
+<div id="message">
+Pick an option.
+</div>
+<script type="text/javascript">
+	$(document).ready(function (){
+
+		placeRadialOptions();
+
+		$('.radial_launcher').mousedown(function() {
+			$(this).next().fadeIn();
+		});
+		$('.radial_launcher').mouseup(function() {
+			$(this).next().fadeOut();
+		});
+		
+		$('.radial_option').mouseup(function() {
+			
+			if (!$(this).hasClass('placeholder')) {
+				$('.active').removeClass('active');
+				$(this).addClass('active').parents('.radial_options').fadeOut();
+				$('.radial_launcher').text($(this).text());
+				$('#message').text("You chose " + $(this).text() + ".");	
+			} else {
+				$(this).parents('.radial_options').fadeOut();
+			}
+		});
+
+	});
+	
+	function placeRadialOptions($options) {
+		// Angle of area to show available options
+		var $displayAngle = 180;
+		console.log('Display Angle: ' + $displayAngle);
+
+		$objects = $('.radial_options .radial_option');
+		if ($displayAngle < 360) {
+		var $optionCount = $objects.length - 1;
+		} else {
+			var $optionCount = $objects.length;
+		}
+		console.log('Total Objects: ' + $optionCount);
+		
+		// Divide the available space by the number of options to get the angle between each option
+		var $spacingAngle = ($displayAngle / $optionCount);
+		console.log('Spacing Angle: ' + $spacingAngle);
+		
+		// How far from the center should the items be displayed
+		var $distance = 80;		
+		
+		var $currentAngle = -180;
+		console.log('Current Angle: ' + $currentAngle);
+		$objects.each(function () {
+			console.log($(this).text());
+			console.log('Current Angle: ' + $currentAngle);
+			var $xPosition = ($distance * Math.cos($currentAngle * Math.PI/180) + 10);
+			var $yPosition = ($distance * Math.sin($currentAngle* Math.PI/180) + 10);
+			console.log('Element Position: ' + $xPosition + " : " + $yPosition);
+			$(this).css({'left' : ($xPosition + 'px'), 'top': ($yPosition + 'px')});
+			
+			$currentAngle += $spacingAngle;
+		});
+		
+		
+		
+	}
+</script>
+</body>
+</html>
