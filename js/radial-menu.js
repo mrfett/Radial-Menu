@@ -1,3 +1,26 @@
+// Javascript Document
+function radialMenu() {
+	placeRadialOptions();
+	$('.radial_launcher').mousedown(function() {
+		$(this).next().fadeIn();
+	});
+	$('.radial_launcher').mouseup(function() {
+		$(this).next().fadeOut();
+	});
+	
+	$('.radial_option').mouseup(function() {
+		
+		if (!$(this).hasClass('placeholder')) {
+			$('.active').removeClass('active');
+			$(this).addClass('active').parents('.radial_options').fadeOut();
+			$('.radial_launcher').text($(this).text());
+			$('#message').text("You chose " + $(this).text() + ".");	
+		} else {
+			$(this).parents('.radial_options').fadeOut();
+		}
+	});
+}
+
 function placeRadialOptions($options) {
 	// Angle of area to show available options
 	var $displayAngle = 180;
