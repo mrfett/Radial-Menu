@@ -32,7 +32,12 @@ function placeRadialOptions($options) {
 	} else {
 		var $optionCount = $objects.length;
 	}
-	console.log('Total Objects: ' + $optionCount);
+	if ($optionCount < 0) {
+		console.warn('No options found for radial menu. Options should be list items with the "radial_option" class.');
+		return;
+	} else {
+		console.log('Total Objects: ' + $optionCount);
+	}
 	
 	// Divide the available space by the number of options to get the angle between each option
 	var $spacingAngle = ($displayAngle / $optionCount);
