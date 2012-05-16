@@ -90,14 +90,14 @@
 <body>
 <div class="radial_menu">
 	<a class="radial_launcher">Options</a>
-  <ul class="radial_options">
-<!--
-  	<li class="radial_option"><a>Option A</a></li>
+	<ul class="radial_options">
+		<li class="radial_option"><a>Option A</a></li>
   	<li class="radial_option"><a>Option B</a></li>
   	<li class="radial_option"><a>Option C</a></li>
     <li class="radial_option"><a>Option D</a></li>
     <li class="radial_option"><a>Option E</a></li>
     <li class="radial_option"><a>Option F</a></li>
+<!--
     <li class="radial_option"><a>Option G</a></li>
     <li class="radial_option"><a>Option H</a></li>
     <li class="radial_option"><a>Option I</a></li>
@@ -111,7 +111,7 @@ Pick an option.
 <script type="text/javascript">
 	$(document).ready(function (){
 
-		radialMenu();
+		radialMenu({'distance': 100, 'startAngle': 180});
 
 	});
 	

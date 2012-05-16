@@ -1,6 +1,6 @@
 // Javascript Document
-function radialMenu() {
-	placeRadialOptions();
+function radialMenu($options) {
+	placeRadialOptions($options);
 	$('.radial_launcher').mousedown(function() {
 		$(this).next().fadeIn();
 	});
@@ -24,6 +24,7 @@ function radialMenu() {
 function placeRadialOptions($options) {
 	// Angle of area to show available options
 	var $displayAngle = 180;
+	console.info($options);
 	console.log('Display Angle: ' + $displayAngle);
 
 	$objects = $('.radial_options .radial_option');
@@ -44,7 +45,7 @@ function placeRadialOptions($options) {
 	console.log('Spacing Angle: ' + $spacingAngle);
 	
 	// How far from the center should the items be displayed
-	var $distance = 80;		
+	var $distance = 98;		
 	
 	var $currentAngle = -180;
 	console.log('Current Angle: ' + $currentAngle);
