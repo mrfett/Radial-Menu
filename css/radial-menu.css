@@ -1,0 +1,26 @@
+/* Remove selection effects on radial menus to avoid highlighting text while dragging to select and item */
+* {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+/* Remove list item effects from radial menu lists */
+ul.radial_options {list-style-type:none;}
+
+/*	Make the radial menu position relative so that the absolute positioning of the children will be based on the position of the radial_menu and not the page.
+		Make the radial menu inline-block so that it will flow with existing content. */
+.radial_menu {
+	position:relative;
+	display:inline-block;
+}
+/* Make the radial_options take up zero space so other items don't shift when the menu is shown. */
+.radial_options {
+	height:0;
+	width:0;
+	font-size:0;
+	line-height:0;
+	display:none;
+}

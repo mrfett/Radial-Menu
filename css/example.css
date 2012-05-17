@@ -1,0 +1,16 @@
+html, body {
+	text-align:center;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+
+a {
+	background:rgba(0, 0, 0, 0.85);
+	color:#fff;
+	text-align:center;
+	cursor:pointer;
+	border-radius:50px;
+}
+
+.radial_menu {margin:200px;}
